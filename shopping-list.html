@@ -22,11 +22,42 @@
     <div>
       <label for="item">Enter a new item:</label>
       <input type="text" name="item" id="item" />
-      <button>Add item</button>
+      <button id="addBtn">Add item</button>
     </div>
 
     <ul></ul>
 
-    <script></script>
+    <script>
+      const list = document.querySelector('ul');
+      const input = document.querySelector('input');
+      const addButton = document.querySelector('#addBtn');
+
+      /*
+        - Event listener that takes user input and generates list items
+        with a delete button for each item.
+        - Empties the input field upon clicking.
+      */
+      addButton.addEventListener('click', () => {
+        const newItem = input.value;
+        input.vaule = '';
+
+        const listItem = document.createElement('li');
+        const spanElement = document.createElement('span');
+        const deleteButton = document.createElement('button');
+
+        listItem.appendChild(spanElement);
+        spanElement.textContent = newItem;
+        listItem.appendChild(deleteButton);
+
+        deleteButton.textContent = 'Delete';
+
+        list.appendChild(listItem);
+
+        deleteButton.addEventListener('click', () => {
+          list.removeChild(listItem);
+        });
+        input.value = '';
+      });
+    </script>
   </body>
 </html>
